@@ -153,7 +153,7 @@ html #layout_wrapper #layout_main section:nth-of-type(even) {
 }
 html #layout_wrapper #layout_main section#layout_intro {
   background-color: #030303;
-  background-image: url("/gfx/home_bg_shadow.png");
+  background-image: url("gfx/home_bg_shadow.png");
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
@@ -189,7 +189,7 @@ html #layout_wrapper #layout_main section#layout_intro .intro_logo #ashwinter_ti
 }
 html #layout_wrapper #layout_main section#layout_roster {
   background-color: #030303;
-  background-image: url("/gfx/roster_bg_shadow.png");
+  background-image: url("gfx/roster_bg_shadow.png");
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;

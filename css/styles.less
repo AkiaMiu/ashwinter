@@ -14,7 +14,7 @@
 
 @font-face {
     font-family: fujimaru;
-    src: url(/fonts/fujimaru.ttf);
+    src: url(fonts/fujimaru.ttf);
 }
 
 // STYLES
@@ -40,7 +40,7 @@ html {
             bottom: 2%;
             width: 100%;
 
-            @media screen and (min-width: 768px) {
+            @media screen and (min-width: 992px) {
                 flex-direction: column;
                 top: 50%;
                 left: 1%;
@@ -69,22 +69,22 @@ html {
                 z-index: 255;
 
                 &:nth-child(1) {
-                    animation-delay: 2.2s;
-                }
-
-                &:nth-child(2) {
-                    animation-delay: 2.3s;
-                }
-
-                &:nth-child(3) {
-                    animation-delay: 2.4s;
-                }
-
-                &:nth-child(4) {
                     animation-delay: 2.5s;
                 }
 
-                @media screen and (min-width: 768px) {
+                &:nth-child(2) {
+                    animation-delay: 2.6s;
+                }
+
+                &:nth-child(3) {
+                    animation-delay: 2.7s;
+                }
+
+                &:nth-child(4) {
+                    animation-delay: 2.8s;
+                }
+
+                @media screen and (min-width: 992px) {
                     margin: .4rem 0;
                     animation-name: page-intro-bounce;
                 }
@@ -122,12 +122,13 @@ html {
                     }
                 }
 
-                .st0 {
+                .nav_element_dark {
                     fill: @layout-light-secondary;
                     transition: fill .15s ease-in-out;
                 }
 
-                .st1 {
+                .nav_element_light {
+                    fill: @layout-light-primary;
                     transition: fill .15s ease-in-out;
                 }
 
@@ -145,11 +146,11 @@ html {
                         }
                     }
 
-                    .st0 {
+                    .nav_element_dark {
                         fill: @guild-primary;
                     }
 
-                    .st1 {
+                    .nav_element_light {
                         fill: @guild-secondary;
                     }
                 }
@@ -195,24 +196,85 @@ html {
 
                     // LOGO
                     .intro_logo {
-                        width: 500px;
+                        width: 90%;
                         height: auto;
                         margin: 0 auto;
-                        padding: 1vh 0 0 0;
+                        padding: 15vh 0 0 0;
 
-                        @media screen and (min-width: 768px) {
-                            padding: 15vh 0 0 0;
+                        @media screen and (min-width: 525px) {
+                            width: 75%;
                         }
 
-                        #ashwinter_crest {
-                            stroke-dasharray: 1500;
-                            stroke-dashoffset: 1500;
-                            animation: intro-draw-crest 1.55s linear forwards;
-                            .crest_ring,
-                            .crest_dark,
+                        @media screen and (min-width: 768px) {
+                            width: 40%;
+                            padding-top: 5vh;
+                        }
+                        @media screen and (min-width: 1600px) {
+                            width: 30%;
+                            padding-top: 10vh;
+                        }
+
+                        #intro_crest {
+                            position: relative;
+                            overflow: visible;
+
+                            .crest_dark {
+                                fill: #c54800;
+                            }
+
                             .crest_light {
-                                opacity: 0;
-                                animation: intro-fill-crest .15s linear forwards 1.35s;
+                                fill: #ff6a38;
+                            }
+
+                            .crest_ring {
+                                fill: rgba(0,0,0,0);
+                                transform: scale(1.15);
+                                transform-origin: center;
+                                -webkit-filter: drop-shadow( 3px 3px 2px rgba(0,0,0, 0.7));
+                                filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+                                animation: intro-ring-fill .25s linear forwards 1.5s, intro-ring-bounce 0.3s cubic-bezier(.32,1.63,.69,1.72) forwards 2.25s;
+                            }
+
+                            [class*="crest_ring_stroke"] {
+                                fill: none;
+                                stroke: #f2f2f2;
+                                stroke-width: 1;
+                                stroke-miterlimit: 10;
+                                stroke-dasharray: 1200;
+                                stroke-dashoffset: 1200;
+                                transform: scale(1.15);
+                                transform-origin: center;
+                                animation: intro-draw 2s linear forwards, intro-ring-bounce 0.3s cubic-bezier(.32,1.63,.69,1.72) forwards 2.25s, intro-erase .25s linear forwards 2s
+                            }
+
+
+                            [class^="spike"] {
+                                animation: intro-spike-bounce 0.75s cubic-bezier(1,-1.6,.7,1.77) forwards 1.75s;
+                                .crest_dark {
+                                    fill: rgba(0,0,0,0);
+                                    animation: intro-fill-dark .15s linear forwards 2s;
+                                }
+
+                                .crest_light {
+                                    fill: rgba(0,0,0,0);
+                                    animation: intro-fill-light .15s linear forwards  2s;
+                                }
+                            }
+
+                            [class$="_left"] {
+                                transform: translate(-9%, -28.5%);
+                            }
+
+                            [class$="_top"] {
+                                transform: translateY(-40%);
+                            }
+
+                            [class$="_right"] {
+                                transform: translate(9%, -28.5%);
+                            }
+
+                            [class$="_bottom"] {
+                                transform: translateY(62%);
                             }
                         }
 
@@ -222,11 +284,13 @@ html {
                                     fill: rgba(0, 0, 0, 0);
                                     stroke-dasharray: 450;
                                     stroke-dashoffset: 450;
-                                    animation: intro-draw-title 2s linear forwards, intro-fill-title .15s linear forwards 1.55s;
+                                    animation: intro-draw 2s linear forwards, intro-fill-title .1s linear forwards 2.25s;
                                 }
                             }
                         }
                     }
+
+
                 }
 
                 &#layout_roster {
@@ -294,31 +358,60 @@ html {
 
 // TITLE DRAW ANIMATION
 
-@keyframes intro-fill-crest {
-    to {
-        opacity: 1;
-    }
-}
+// GENERAL
 
-@keyframes intro-draw-crest {
-    90% {
+@keyframes intro-draw {
+    to {
         stroke-dashoffset: 0;
         stroke-width: .5;
     }
-    100% {
-        stroke-dashoffset: 0;
+}
+
+@keyframes intro-fill-dark {
+    to {
+            fill: @guild-secondary;
+    }
+}
+
+@keyframes intro-fill-light {
+    to {
+            fill: @guild-primary;
+    }
+}
+
+@keyframes intro-erase {
+    to {
         stroke-width: 0;
     }
 }
 
-@keyframes intro-draw-title {
+// SPIKES
+
+@keyframes intro-spike-bounce {
     to {
-        stroke-dashoffset: 0;
+        transform: translate(0);
     }
 }
+
+// RING
+
+@keyframes intro-ring-fill {
+    to {
+        fill: @layout-dark-secondary;
+    }
+}
+
+@keyframes intro-ring-bounce {
+    to {
+        transform: scale(1);
+    }
+}
+
+// TITLE
 
 @keyframes intro-fill-title {
     to {
         fill: @layout-light-secondary;
     }
 }
+

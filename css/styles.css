@@ -1,6 +1,6 @@
 @font-face {
   font-family: fujimaru;
-  src: url(/fonts/fujimaru.ttf);
+  src: url(fonts/fujimaru.ttf);
 }
 html {
   scroll-behavior: smooth;
@@ -21,7 +21,7 @@ html #layout_wrapper .fixed_nav {
   bottom: 2%;
   width: 100%;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   html #layout_wrapper .fixed_nav {
     flex-direction: column;
     top: 50%;
@@ -51,18 +51,18 @@ html #layout_wrapper .fixed_nav .fixed_nav_btn {
   z-index: 255;
 }
 html #layout_wrapper .fixed_nav .fixed_nav_btn:nth-child(1) {
-  animation-delay: 2.2s;
-}
-html #layout_wrapper .fixed_nav .fixed_nav_btn:nth-child(2) {
-  animation-delay: 2.3s;
-}
-html #layout_wrapper .fixed_nav .fixed_nav_btn:nth-child(3) {
-  animation-delay: 2.4s;
-}
-html #layout_wrapper .fixed_nav .fixed_nav_btn:nth-child(4) {
   animation-delay: 2.5s;
 }
-@media screen and (min-width: 768px) {
+html #layout_wrapper .fixed_nav .fixed_nav_btn:nth-child(2) {
+  animation-delay: 2.6s;
+}
+html #layout_wrapper .fixed_nav .fixed_nav_btn:nth-child(3) {
+  animation-delay: 2.7s;
+}
+html #layout_wrapper .fixed_nav .fixed_nav_btn:nth-child(4) {
+  animation-delay: 2.8s;
+}
+@media screen and (min-width: 992px) {
   html #layout_wrapper .fixed_nav .fixed_nav_btn {
     margin: 0.4rem 0;
     animation-name: page-intro-bounce;
@@ -101,11 +101,12 @@ html #layout_wrapper .fixed_nav .fixed_nav_btn:after {
     border-radius: 0 4px 4px 0;
   }
 }
-html #layout_wrapper .fixed_nav .fixed_nav_btn .st0 {
+html #layout_wrapper .fixed_nav .fixed_nav_btn .nav_element_dark {
   fill: #f2f2f2;
   transition: fill 0.15s ease-in-out;
 }
-html #layout_wrapper .fixed_nav .fixed_nav_btn .st1 {
+html #layout_wrapper .fixed_nav .fixed_nav_btn .nav_element_light {
+  fill: #ccc;
   transition: fill 0.15s ease-in-out;
 }
 html #layout_wrapper .fixed_nav .fixed_nav_btn:hover {
@@ -122,10 +123,10 @@ html #layout_wrapper .fixed_nav .fixed_nav_btn:hover:after {
     animation-name: hover-bounce;
   }
 }
-html #layout_wrapper .fixed_nav .fixed_nav_btn:hover .st0 {
+html #layout_wrapper .fixed_nav .fixed_nav_btn:hover .nav_element_dark {
   fill: #ff6a38;
 }
-html #layout_wrapper .fixed_nav .fixed_nav_btn:hover .st1 {
+html #layout_wrapper .fixed_nav .fixed_nav_btn:hover .nav_element_light {
   fill: #c54800;
 }
 html #layout_wrapper .fixed_nav .fixed_nav_btn:active,
@@ -160,32 +161,85 @@ html #layout_wrapper #layout_main section#layout_intro {
   background-attachment: fixed;
 }
 html #layout_wrapper #layout_main section#layout_intro .intro_logo {
-  width: 500px;
+  width: 90%;
   height: auto;
   margin: 0 auto;
-  padding: 1vh 0 0 0;
+  padding: 15vh 0 0 0;
+}
+@media screen and (min-width: 525px) {
+  html #layout_wrapper #layout_main section#layout_intro .intro_logo {
+    width: 75%;
+  }
 }
 @media screen and (min-width: 768px) {
   html #layout_wrapper #layout_main section#layout_intro .intro_logo {
-    padding: 15vh 0 0 0;
+    width: 40%;
+    padding-top: 5vh;
   }
 }
-html #layout_wrapper #layout_main section#layout_intro .intro_logo #ashwinter_crest {
-  stroke-dasharray: 1500;
-  stroke-dashoffset: 1500;
-  animation: intro-draw-crest 1.55s linear forwards;
+@media screen and (min-width: 1600px) {
+  html #layout_wrapper #layout_main section#layout_intro .intro_logo {
+    width: 30%;
+    padding-top: 10vh;
+  }
 }
-html #layout_wrapper #layout_main section#layout_intro .intro_logo #ashwinter_crest .crest_ring,
-html #layout_wrapper #layout_main section#layout_intro .intro_logo #ashwinter_crest .crest_dark,
-html #layout_wrapper #layout_main section#layout_intro .intro_logo #ashwinter_crest .crest_light {
-  opacity: 0;
-  animation: intro-fill-crest 0.15s linear forwards 1.35s;
+html #layout_wrapper #layout_main section#layout_intro .intro_logo #intro_crest {
+  position: relative;
+  overflow: visible;
+}
+html #layout_wrapper #layout_main section#layout_intro .intro_logo #intro_crest .crest_dark {
+  fill: #c54800;
+}
+html #layout_wrapper #layout_main section#layout_intro .intro_logo #intro_crest .crest_light {
+  fill: #ff6a38;
+}
+html #layout_wrapper #layout_main section#layout_intro .intro_logo #intro_crest .crest_ring {
+  fill: rgba(0, 0, 0, 0);
+  transform: scale(1.15);
+  transform-origin: center;
+  -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+  animation: intro-ring-fill 0.25s linear forwards 1.5s, intro-ring-bounce 0.3s cubic-bezier(0.32, 1.63, 0.69, 1.72) forwards 2.25s;
+}
+html #layout_wrapper #layout_main section#layout_intro .intro_logo #intro_crest [class*="crest_ring_stroke"] {
+  fill: none;
+  stroke: #f2f2f2;
+  stroke-width: 1;
+  stroke-miterlimit: 10;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  transform: scale(1.15);
+  transform-origin: center;
+  animation: intro-draw 2s linear forwards, intro-ring-bounce 0.3s cubic-bezier(0.32, 1.63, 0.69, 1.72) forwards 2.25s, intro-erase 0.25s linear forwards 2s;
+}
+html #layout_wrapper #layout_main section#layout_intro .intro_logo #intro_crest [class^="spike"] {
+  animation: intro-spike-bounce 0.75s cubic-bezier(1, -1.6, 0.7, 1.77) forwards 1.75s;
+}
+html #layout_wrapper #layout_main section#layout_intro .intro_logo #intro_crest [class^="spike"] .crest_dark {
+  fill: rgba(0, 0, 0, 0);
+  animation: intro-fill-dark 0.15s linear forwards 2s;
+}
+html #layout_wrapper #layout_main section#layout_intro .intro_logo #intro_crest [class^="spike"] .crest_light {
+  fill: rgba(0, 0, 0, 0);
+  animation: intro-fill-light 0.15s linear forwards 2s;
+}
+html #layout_wrapper #layout_main section#layout_intro .intro_logo #intro_crest [class$="_left"] {
+  transform: translate(-9%, -28.5%);
+}
+html #layout_wrapper #layout_main section#layout_intro .intro_logo #intro_crest [class$="_top"] {
+  transform: translateY(-40%);
+}
+html #layout_wrapper #layout_main section#layout_intro .intro_logo #intro_crest [class$="_right"] {
+  transform: translate(9%, -28.5%);
+}
+html #layout_wrapper #layout_main section#layout_intro .intro_logo #intro_crest [class$="_bottom"] {
+  transform: translateY(62%);
 }
 html #layout_wrapper #layout_main section#layout_intro .intro_logo #ashwinter_title g path {
   fill: rgba(0, 0, 0, 0);
   stroke-dasharray: 450;
   stroke-dashoffset: 450;
-  animation: intro-draw-title 2s linear forwards, intro-fill-title 0.15s linear forwards 1.55s;
+  animation: intro-draw 2s linear forwards, intro-fill-title 0.1s linear forwards 2.25s;
 }
 html #layout_wrapper #layout_main section#layout_roster {
   background-color: #030303;
@@ -227,24 +281,40 @@ html #layout_wrapper #layout_main section#layout_roster {
     transform: translateY(0);
   }
 }
-@keyframes intro-fill-crest {
+@keyframes intro-draw {
   to {
-    opacity: 1;
-  }
-}
-@keyframes intro-draw-crest {
-  90% {
     stroke-dashoffset: 0;
     stroke-width: 0.5;
   }
-  100% {
-    stroke-dashoffset: 0;
+}
+@keyframes intro-fill-dark {
+  to {
+    fill: #c54800;
+  }
+}
+@keyframes intro-fill-light {
+  to {
+    fill: #ff6a38;
+  }
+}
+@keyframes intro-erase {
+  to {
     stroke-width: 0;
   }
 }
-@keyframes intro-draw-title {
+@keyframes intro-spike-bounce {
   to {
-    stroke-dashoffset: 0;
+    transform: translate(0);
+  }
+}
+@keyframes intro-ring-fill {
+  to {
+    fill: #333;
+  }
+}
+@keyframes intro-ring-bounce {
+  to {
+    transform: scale(1);
   }
 }
 @keyframes intro-fill-title {
